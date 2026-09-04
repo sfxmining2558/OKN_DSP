@@ -10,17 +10,22 @@ jobs:
 
     steps:
 
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Extract Build Package
+    - name: Extract Project
       run: |
         unzip OKN_DSP_BUILD_V2.zip
-        chmod +x build_apk.sh
-        ./build_apk.sh
+
+    - name: Setup Android
+      uses: android-actions/setup-android@v3
+
+    - name: Build APK
+      run: |
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: OKN_DSP_APK
-        path: "**/*.apk"
+        path: app/build/outputs/apk/debug/app-debug.apk
