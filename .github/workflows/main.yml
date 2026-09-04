@@ -15,7 +15,7 @@ jobs:
 
     - name: Extract Build Package
       run: |
-        unzip OKN_DSP_BUILD.zip
+        unzip OKN_DSP_BUILD_V2.zip
         chmod +x build_apk.sh
         ./build_apk.sh
 
